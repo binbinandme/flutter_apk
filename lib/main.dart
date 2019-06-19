@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   showWelcomePage() {
     // 暂时关掉欢迎介绍
     return AppPage();
+
 //    bool showWelcome = sp.getBool(SharedPreferencesKeys.showWelcome);
 //    if (showWelcome == null || showWelcome == true) {
 //      return WelcomePage();
