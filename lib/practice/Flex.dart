@@ -40,6 +40,7 @@ class FlexLayoutTestRoute extends StatelessWidget {
                 child: Flex(
                   direction: Axis.vertical,
                   children: <Widget>[
+                    // 拉伸布局
                     Expanded(
                       flex: 2,
                       child: Container(
