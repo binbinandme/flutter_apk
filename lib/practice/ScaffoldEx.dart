@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_go/widgets/elements/Form/Button/IconButton/demo.dart';
 
 /**
@@ -9,7 +10,7 @@ class ScTest extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
 
-    return ScTestState();
+    return ScTestStateStack();
   }
 }
 
@@ -63,6 +64,46 @@ class ScTestState extends State<ScTest> with SingleTickerProviderStateMixin{
 //        actions: <Widget>[
 //          IconButton(icon: Icon(Icons.print),onPressed: (){},padding: EdgeInsets.all(1.0)),
 //        ],
+        bottom: TabBar(
+          controller: _ctl,
+          tabs: tabNames.map((name) => Tab(text: name,)).toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class ScTestStateStack extends ScTestState{
+  //用stack来实现布局的版本
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.title),
+        foregroundColor: Colors.amber,
+        onPressed: ()=> _ctl.animateTo(1),
+      ),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        titleSpacing: 0,
+        title: SizedBox(// stack 默认不会填充宽高
+          width: double.infinity,
+          child: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              Positioned(
+                left: 1.0,
+                child: Icon(Icons.ac_unit),
+              ),
+              Text("title!"),
+              Positioned(
+                right: 1.0,
+                child: Icon(Icons.share),
+              )
+            ],
+          ),
+        ),
         bottom: TabBar(
           controller: _ctl,
           tabs: tabNames.map((name) => Tab(text: name,)).toList(),
